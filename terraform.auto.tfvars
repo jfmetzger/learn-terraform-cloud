@@ -1,1 +1,1 @@
-machine_type = e2-micro"
+machine_type = "e2-micro"
