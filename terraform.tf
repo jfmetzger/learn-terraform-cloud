@@ -1,17 +1,18 @@
 terraform {
-
+/*
   cloud {
-    organization = "organization-name"
+    organization = "DCI-DevOps-Terraform"
 
     workspaces {
       name = "learn-terraform-cloud"
     }
   }
+*/
 
   required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.28.0"
+    google = {
+      source  = "hashicorp/google"
+      version = "4.41.0"
     }
   }
 

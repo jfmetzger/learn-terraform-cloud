@@ -1,28 +1,27 @@
-provider "aws" {
-  region = var.region
+provider "google" {
+  project = var.project_id
+  region  = var.region
+  zone    = var.zone
 }
 
-data "aws_ami" "ubuntu" {
-  most_recent = true
+resource "google_compute_instance" "vm" {
+  name         = "${var.project_id}-server"
+  machine_type = var.machine_type
+  allow_stopping_for_update = true
 
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-11"
+    }
   }
 
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
+  network_interface {
+    # A default network is created for all GCP projects
+    network = "default"
+    access_config {
+    }
   }
-
-  owners = ["099720109477"] # Canonical
-}
-
-resource "aws_instance" "ubuntu" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
-
-  tags = {
-    Name = var.instance_name
+  labels = {
+      phase = "terraform-testing"
   }
 }

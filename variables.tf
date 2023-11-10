@@ -1,15 +1,25 @@
 variable "region" {
-  description = "AWS region"
-  default     = "us-west-1"
+  description = "GCP region"
+  default     = "us-central1"
 }
 
-variable "instance_type" {
-  description = "Type of EC2 instance to provision"
-  default     = "t2.micro"
+variable "zone" {
+  description = "GCP zone"
+  default     = "us-central1-a"
+}
+
+variable "machine_type" {
+  description = "Type of GCP Compute Engine VM to provision"
+  default     = "e2-micro"
 }
 
 variable "instance_name" {
-  description = "EC2 instance name"
+  description = "GCP Compute Engine VM name"
   default     = "Provisioned by Terraform"
+}
+
+variable "project_id" {
+  description = "Project ID"
+  default     = "roidtc-projects-209"
 }
 
